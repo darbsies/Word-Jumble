@@ -1,0 +1,55 @@
+body {
+  margin: 15px;
+  font-family: Lato;
+  color: #4f4e4e;
+}
+body .header .red-background {
+  background: #b54757;
+  text-align: center;
+  padding: 10px;
+}
+body .header .red-background h1 {
+  color: #fff;
+  font-weight: 100;
+  margin: 0;
+}
+body .main-page .left-column {
+  float: left;
+  width: 35%;
+  border-right: 2px solid #4f4e4e;
+  margin-top: 10px;
+  margin-left: 15px;
+}
+body .main-page .left-column .find-me h2 {
+  display: inline-block;
+}
+body .main-page .left-column .find-me .line {
+  width: calc(100% - 115px);
+  height: 1px;
+  background: #000;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+body .main-page .left-column .find-me .find-me-info .find-me-row p {
+  display: inline-block;
+  vertical-align: middle;
+}
+body .main-page .left-column .find-me .find-me-info .find-me-row img {
+  height: 35px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+body .main-page .left-column .find-me .find-me-info .find-me-row img.email {
+  height: 26px;
+}
+body .main-page .right-column {
+  float: left;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+body .footer {
+  background: #b54757;
+}

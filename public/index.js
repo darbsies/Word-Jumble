@@ -4,6 +4,7 @@ var typed = "";
 var initial = "";     //initially randomized word
 var backspacePressed = false;
 var color = "";
+var points = 0;
 
 $( document ).ready(function() {
   newWord();
@@ -52,6 +53,7 @@ var addLetter = function(letter) {
     if(typed.length == truth.length) {
       if(typed == truth) {
         color = "green";
+        points = points + truth.length;
         setTimeout(function() {
           color = "";
           typed = "";
@@ -59,12 +61,14 @@ var addLetter = function(letter) {
         }, 600);
       } else {
         color = "red";
+        points = points - truth.length;
         setTimeout(function() {
           color = "";
           typed = "";
           drawWord();
         }, 600);
       }
+      updatePoints();
     }
     drawWord();
 
@@ -135,13 +139,14 @@ var newWord = function() {
   });
 }
 
+var updatePoints = function() {
+  $('.point-value').html(points);
+}
 
 
-//check if truth or not hwen length is finished
+
+
 //display word if time runs out and you don't get it
 //points add
-//give a new word
-//highlight greenw hen right
-//highlight red and restart to intial when wrong
 //change words getting generated
 

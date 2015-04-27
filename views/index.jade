@@ -2,50 +2,29 @@ doctype html
 html
   head
     link(rel='stylesheet', href='/main.css')
+    script(type='text/javascript', src='jquery.js')
+    script(type='text/javascript', src='index.js')
   body
-    .header
-      .red-background
-        h1 Darby Schumacher
-    .main-page
-      .left-column
-        .find-me
-          h2 FIND ME
-          .line
+    .purple-background
+      .word-jumble-title
+        h1 Welcome to Word Jumble!
+        h2 Unscramble as many words as you can in one minute
+      .letters
+        .circle-frame
+          .letter A
+        .circle-frame
+          .letter P
+        .circle-frame
+          .letter P
+        .circle-frame
+          .letter L
+        .circle-frame
+          .letter E
+      .footer
+        .countdown
+          .time-header Seconds Left:
+          .time-value   39
+        .points
+          .point-header Points:
+          .point-value   12
 
-          .find-me-info
-            .find-me-row
-              img.email(src='/images/email-icon.png')
-              p darbys@stanford.edu
-            .find-me-row
-              img(src='/images/phone-icon.png')
-              p 203.962.4038
-            .find-me-row
-              img(src='/images/location-icon.png')
-              p
-                | P.O. Box 15422
-                br
-                | Stanford, CA 94305
-            .find-me-row
-              img(src='/images/l-icon.png')
-              p linkedin.com/in/darbyschumacher
-            .find-me-row
-              img(src='/images/t-icon.png')
-              p @darbsies
-            .find-me-row
-              img(src='/images/house-icon.png')
-              p Chattanooga, Tennessee
-
-          .image
-        .skills
-          h2 SKILLS
-        .awards
-          h2 AWARDS
-      .right-column
-        section
-        .experience
-          h2 EXPERIENCE
-        .education
-          h2 EDUCATION
-        .projects
-          h2 PROJECTS
-    .footer

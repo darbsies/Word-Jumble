@@ -30,7 +30,17 @@ body .purple-background .letters .circle-frame {
   margin: 20px;
   border-radius: 100px;
   text-align: center;
-  border: 4px solid #f5f5f5;
+  border: 4px solid #fff;
+}
+body .purple-background .letters .circle-frame.typed {
+  background: #fff;
+  color: #4a0093;
+}
+body .purple-background .letters .circle-frame.red {
+  background: #f00;
+}
+body .purple-background .letters .circle-frame.green {
+  background: #008000;
 }
 body .purple-background .footer .time-header {
   display: inline-block;

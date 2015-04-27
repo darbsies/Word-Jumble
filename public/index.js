@@ -1,17 +1,102 @@
-$( document ).ready(function() {
-  $.get( "http://api.wordnik.com/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=800&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=8&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5", function( data ) {
-    console.log(data);
-    var word = data.word;
-    var randomized = randomizeWord(word);
-    drawWord(randomized);
+var truth = "";
+var currentDisplay = "";
+var typed = "";
+var initial = "";     //initially randomized word
+var backspacePressed = false;
+var color = "";
 
+$( document ).ready(function() {
+  newWord();
+
+  $('body').bind('keypress', function(e) {
+
+    var key = e.keyCode;
+    var letter = String.fromCharCode(key);
+    console.log(key);
+    addLetter(letter);
+    e.preventDefault();
   });
+  $(document).keydown(function(event){
+      if (event.which == 8) {
+        event.preventDefault();
+        if(backspacePressed == false) {
+          if(typed != "") {
+            if(typed.length == 1) {
+              typed = "";
+            } else {
+              typed = typed.slice(0, typed.length - 1);
+            }
+            drawWord();
+          }
+          backspacePressed = true;
+        }
+      }
+   })
+  $(document).keyup(function(event){
+    if (event.which == 8) {
+      backspacePressed = false;
+    }
+  })
 });
 
-var drawWord = function(word) {
+
+var addLetter = function(letter) {
+  var current = "";
+  if(typed.length == 0) {
+    current = currentDisplay;
+  } else {
+    current = currentDisplay.slice(typed.length);
+  }
+  if(current.indexOf(letter) != -1) {
+    typed = typed + letter;
+    if(typed.length == truth.length) {
+      if(typed == truth) {
+        color = "green";
+        setTimeout(function() {
+          color = "";
+          typed = "";
+          newWord();
+        }, 600);
+      } else {
+        color = "red";
+        setTimeout(function() {
+          color = "";
+          typed = "";
+          drawWord();
+        }, 600);
+      }
+    }
+    drawWord();
+
+  }
+
+}
+
+var drawWord = function() {
+    if(typed == "" ) {
+      currentDisplay = initial;
+    } else {
+      var initialCopy = initial;
+      for(var index = 0; index < typed.length; index++) {
+        var swapIndex = initialCopy.indexOf(typed[index]);
+        initialCopy = initialCopy.slice(0, swapIndex) + initialCopy.slice(swapIndex + 1);
+      }
+
+      currentDisplay = typed + initialCopy;
+
+    }
+
     var html = "";
-    for(var i = 0; i < word.length; i++) {
-      html = html + "<div class='circle-frame'><div class='letter'>"+ word[i] + "</div></div>";
+    for(var i = 0; i < currentDisplay.length; i++) {
+      var highlight = "";
+      if(color != "") {
+        highlight = color;
+      } else {
+        if(i < typed.length) {
+          highlight = "typed";
+        }
+      }
+      html = html + "<div class='circle-frame "  + highlight + "'><div class='letter'>"+ currentDisplay[i] + "</div></div>";
     }
 
     $('.letters').html(html);
@@ -37,5 +122,26 @@ var randomizeWord = function(word) {
     return randomized;
 }
 
+var newWord = function() {
+  $.get( "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=1400&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=6&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5", function( data ) {
 
+    console.log(data);
+    var word = data.word;
+    word = word.toLowerCase();
+    truth = word;
+    initial = randomizeWord(word);
+    currentDisplay = initial;
+    drawWord();
+  });
+}
+
+
+
+//check if truth or not hwen length is finished
+//display word if time runs out and you don't get it
+//points add
+//give a new word
+//highlight greenw hen right
+//highlight red and restart to intial when wrong
+//change words getting generated
 

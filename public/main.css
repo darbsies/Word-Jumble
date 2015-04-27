@@ -20,6 +20,9 @@ body .purple-background .word-jumble-title h1 {
 body .purple-background .word-jumble-title h2 {
   font-weight: 100;
 }
+body .purple-background .letters .letter {
+  font-size: 60px;
+}
 body .purple-background .letters .circle-frame {
   display: inline-block;
   height: 100px;

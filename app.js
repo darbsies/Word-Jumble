@@ -36,7 +36,8 @@ app.get('/darby/eric', function (req, res) {
   res.send('A lot of information');
 });
 
-var server = app.listen(3002, function () {
+var port = process.env.PORT || 3000;
+var server = app.listen(port, function () {
 
   var host = server.address().address;
   var port = server.address().port;

@@ -5,9 +5,12 @@ var initial = "";     //initially randomized word
 var backspacePressed = false;
 var color = "";
 var points = 0;
+var secondsLeft = 60;
 
 $( document ).ready(function() {
   newWord();
+  $( ".purple-box" ).hide();
+  startTimer();
 
   $('body').bind('keypress', function(e) {
 
@@ -38,6 +41,14 @@ $( document ).ready(function() {
       backspacePressed = false;
     }
   })
+
+  $( ".button" ).click(function() {
+    $( ".purple-box" ).hide();
+    typed = "";
+    newWord();
+    secondsLeft = 60;
+    points = 0;
+  });
 });
 
 
@@ -127,7 +138,7 @@ var randomizeWord = function(word) {
 }
 
 var newWord = function() {
-  $.get( "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=true&minCorpusCount=1400&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=6&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5", function( data ) {
+  $.get( "http://api.wordnik.com:80/v4/words.json/randomWord?hasDictionaryDef=true&excludePartOfSpeech=proper-noun&minCorpusCount=1400&maxCorpusCount=-1&minDictionaryCount=1&maxDictionaryCount=-1&minLength=4&maxLength=6&api_key=a2a73e7b926c924fad7001ca3111acd55af2ffabf50eb4ae5", function( data ) {
 
     console.log(data);
     var word = data.word;
@@ -136,6 +147,9 @@ var newWord = function() {
     initial = randomizeWord(word);
     currentDisplay = initial;
     drawWord();
+    $( ".letters" ).show();
+    $( ".points" ).show();
+    $( ".countdown" ).show();
   });
 }
 
@@ -143,10 +157,23 @@ var updatePoints = function() {
   $('.point-value').html(points);
 }
 
+var updateSeconds = function() {
+  if(secondsLeft > 0) {
+    secondsLeft--;
+  }
+  $('.time-value').html(secondsLeft);
+  if(secondsLeft == 0) {
+    var html = "You scored " + points + " points";
+    $('.total-points').html(html);
+    $( ".purple-box" ).show();
+    $( ".points" ).hide();
+    $( ".countdown" ).hide();
+    $( ".letters" ).hide();
+  }
+}
 
-
-
-//display word if time runs out and you don't get it
-//points add
-//change words getting generated
-
+startTimer = function(){
+setInterval(
+  function(){
+    updateSeconds();
+}, 1000)};

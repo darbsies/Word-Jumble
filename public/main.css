@@ -9,19 +9,45 @@ body .purple-background {
   height: 100vh;
   text-align: center;
 }
+body .purple-background .purple-box {
+  position: absolute;
+  top: calc(50% - 100px);
+  left: calc(50% - 175px);
+  background: #e3d7ee;
+  color: #4a0093;
+  padding: 20px;
+  border-radius: 5px;
+  width: 310px;
+  height: 160px;
+}
+body .purple-background .purple-box .button {
+  font-size: 15px;
+  background: #b292d1;
+  padding-bottom: 1px;
+  padding-top: 1px;
+  width: 200px;
+  margin: 0 auto;
+  border-radius: 5px;
+}
 body .purple-background .word-jumble-title {
   margin-top: 0px;
-  color: #fff;
+  color: #b292d1;
 }
 body .purple-background .word-jumble-title h1 {
-  font-weight: 200;
+  font-weight: 600;
   margin: 0;
+  font-size: 75px;
+  padding-top: 15px;
 }
 body .purple-background .word-jumble-title h2 {
   font-weight: 100;
 }
+body .purple-background .letters {
+  padding-top: 40px;
+}
 body .purple-background .letters .letter {
   font-size: 60px;
+  padding-top: 5px;
 }
 body .purple-background .letters .circle-frame {
   display: inline-block;
@@ -37,10 +63,10 @@ body .purple-background .letters .circle-frame.typed {
   color: #4a0093;
 }
 body .purple-background .letters .circle-frame.red {
-  background: #f00;
+  background: #d45b5b;
 }
 body .purple-background .letters .circle-frame.green {
-  background: #008000;
+  background: #6ed9aa;
 }
 body .purple-background .footer .time-header {
   display: inline-block;

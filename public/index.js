@@ -44,9 +44,12 @@ $( document ).ready(function() {
   $( ".button" ).click(function() {
     $( ".purple-box" ).hide();
     typed = "";
-    newWord();
-    secondsLeft = 60;
     points = 0;
+    updatePoints();     //added in update points because it wasn't updating the html
+    secondsLeft = 60;   //changed this and it fixed glitches
+    newWord();
+
+
   });
 });
 
